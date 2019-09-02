@@ -6,8 +6,8 @@ RUN apt-get update \
 
 ARG binary
 
-COPY $binary /postgres_exporter
+COPY ./postgres_exporter /bin/postgres_exporter
 
 EXPOSE 9187
 
-ENTRYPOINT [ "/postgres_exporter" ]
+ENTRYPOINT [ "/bin/postgres_exporter" ]
