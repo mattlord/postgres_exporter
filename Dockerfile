@@ -1,5 +1,9 @@
-FROM debian:7.11-slim
-RUN useradd -u 20001 postgres_exporter
+FROM debian:10-slim
+RUN useradd -u 20001 postgres_exporter \
+    && apt-get update \
+    && apt-get -y install socat ca-certificates \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists
 
 FROM scratch
 
