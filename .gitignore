@@ -9,7 +9,6 @@
 /cover.out
 /cover.*.out
 /.coverage
-/bin
 /release
 /*.prom
 /.metrics.*.*.prom
