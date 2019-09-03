@@ -15,7 +15,7 @@ This package is available for Docker:
 # Start an example database
 docker run --net=host -it --rm -e POSTGRES_PASSWORD=password postgres
 # Connect to it
-docker run --net=host -e DATA_SOURCE_NAME="postgresql://postgres:password@localhost:5432/postgres?sslmode=disable" wrouesnel/postgres_exporter
+docker run --net=host -e DATA_SOURCE_NAME="postgresql://postgres:password@localhost:5432/postgres?sslmode=require" mattalord/postgres_exporter_ssl
 ```
 
 ## Building and running
@@ -32,11 +32,6 @@ $ ./postgres_exporter <flags>
 ```
 
 To build the dockerfile, run `go run mage.go docker`.
-
-This will build the docker image as `wrouesnel/postgres_exporter:latest`. This
-is a minimal docker image containing *just* postgres_exporter. By default no SSL
-certificates are included, if you need to use SSL you should either bind-mount
-`/etc/ssl/certs/ca-certificates.crt` or derive a new image containing them.
 
 ### Vendoring
 Package vendoring is handled with [`govendor`](https://github.com/kardianos/govendor)
@@ -127,7 +122,7 @@ must be set via the `DATA_SOURCE_NAME` environment variable.
 
 For running it locally on a default Debian/Ubuntu install, this will work (transpose to init script as appropriate):
 
-    sudo -u postgres DATA_SOURCE_NAME="user=postgres host=/var/run/postgresql/ sslmode=disable" postgres_exporter
+    sudo -u postgres DATA_SOURCE_NAME="user=postgres host=/var/run/postgresql/sslmode=require" postgres_exporter
 
 Also, you can set a list of sources to scrape different instances from the one exporter setup. Just define a comma separated string.
 
@@ -237,7 +232,7 @@ GRANT SELECT ON postgres_exporter.pg_stat_replication TO postgres_exporter;
 > **NOTE**
 > <br />Remember to use `postgres` database name in the connection string:
 > ```
-> DATA_SOURCE_NAME=postgresql://postgres_exporter:password@localhost:5432/postgres?sslmode=disable
+> DATA_SOURCE_NAME=postgresql://postgres_exporter:password@localhost:5432/postgres?sslmode=require
 > ```
 
 # Hacking
