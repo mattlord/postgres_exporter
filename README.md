@@ -3,7 +3,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/wrouesnel/postgres_exporter)](https://goreportcard.com/report/github.com/wrouesnel/postgres_exporter)
 [![Docker Pulls](https://img.shields.io/docker/pulls/wrouesnel/postgres_exporter.svg)](https://hub.docker.com/r/wrouesnel/postgres_exporter/tags)
 
-# PostgreSQL Server Exporter
+# PostgreSQL Server Exporter with SSL Support
 
 Prometheus exporter for PostgreSQL server metrics.
 
